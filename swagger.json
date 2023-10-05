@@ -1,0 +1,106 @@
+
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API Pizzaria-nodejs",
+      "description": "API para Pizzaria, completa contendo o CRUD de diversos assuntos",
+      "contact": {
+        "name": "Priscila",
+        "email": "prillybsb@gmail.com"
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/",
+        "description": "API de teste LOCAL"
+      }
+    ],
+    "paths": 
+      "/usuario/findAll": 
+        "get": {
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "summary": "Lista todos os usuarios da API",
+          "description": "Rota responsavel por listar todos os usuarios da API",
+          "tags": ["Usuario"],
+          "parameters": [
+            {
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              },
+              "name": "limit"
+            },
+            {
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              },
+              "name": "offset"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Ok, tarefa realizada com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Usuario"
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized, Erro de autenticação, problemas com o token",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found, nenhum usuario encontrado",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error, alguma coisa deu errado no servidor",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
